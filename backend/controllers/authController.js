@@ -4,6 +4,7 @@ const Order = require('../models/Order');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const sendEmail = require('../utils/sendEmail');
+const Product = require("../models/Product");
 
 
 const generateToken = (id) => {
@@ -245,13 +246,27 @@ const loginUser = async (req, res) => {
 };
 const getUsers = async (req, res) => {
   try {
-    const users = await User.find({}).select('-password');
+    const users = await User.find({}).select("-password");
 
-    console.log(users);   // <-- Add this line
+    const usersWithProductCount = await Promise.all(
+      users.map(async (user) => {
+        const productCount = await Product.countDocuments({
+          seller: user._id,
+        });
 
-    res.json(users);
+        return {
+          ...user.toObject(),
+          productCount,
+        };
+      })
+    );
+
+    res.json(usersWithProductCount);
+
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({
+      message: error.message,
+    });
   }
 };
 // const getSellerCustomers = async (req, res) => {

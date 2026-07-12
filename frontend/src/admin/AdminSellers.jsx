@@ -102,7 +102,7 @@ const AdminSellers = () => {
                             <tr key={seller._id}>
                                 <td style={td}>{seller.name}</td>
                                 <td style={td}>{seller.email}</td>
-                                <td style={td}>0</td>
+                                <td style={td}>{seller.productCount}</td>
                                 <td style={td}>
                                     <span
                                         style={{
