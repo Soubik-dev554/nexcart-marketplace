@@ -1,45 +1,95 @@
-import React from 'react';
+import React from "react";
 
 const textualStyle = {
-  maxWidth: '900px',
-  margin: '0 auto',
-  padding: '40px',
-  background: '#18181b',
-  borderRadius: '16px',
-  border: '1px solid rgba(255, 255, 255, 0.05)',
-  lineHeight: '1.8',
-  color: '#a1a1aa'
+  maxWidth: "900px",
+  margin: "40px auto",
+  padding: "40px",
+  background: "#18181b",
+  borderRadius: "16px",
+  border: "1px solid rgba(255,255,255,0.08)",
+  lineHeight: "1.8",
+  color: "#d4d4d8",
+  boxShadow: "0 10px 30px rgba(0,0,0,0.3)",
 };
 
 const ReturnPolicy = () => {
   return (
     <div style={textualStyle}>
-      <h2 style={{ color: '#fff', marginBottom: '20px', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '15px' }}>
+      <h2
+        style={{
+          color: "#fff",
+          marginBottom: "20px",
+          borderBottom: "2px solid #f97316",
+          paddingBottom: "15px",
+        }}
+      >
         Return & Refund Policy
       </h2>
-      
-      <p style={{ marginBottom: '20px' }}>
-        At NEXCART, we proudly stand behind the quality of our merchandise. If for any reason you are completely disastified with your purchase, you may securely initiate a return within 30 days of receiving your order.
+
+      <p style={{ marginBottom: "20px" }}>
+        At <strong>NEXCART</strong>, customer satisfaction is our priority.
+        If you are not completely satisfied with your purchase, you may
+        request a return within <strong>7 days</strong> of receiving your
+        order, subject to the conditions below.
       </p>
 
-      <h4 style={{ color: '#f97316', marginTop: '25px', marginBottom: '10px' }}>1. Eligibility for Returns</h4>
-      <p style={{ marginBottom: '15px' }}>
-        To be eligible for a return, the item must be completely unused, housed in the same absolute condition that it was received, and maintained within its original factory packaging. Receipts or proof of purchase mappings are strictly required.
-      </p>
+      <h4 style={{ color: "#f97316" }}>1. Eligibility for Returns</h4>
 
-      <h4 style={{ color: '#f97316', marginTop: '25px', marginBottom: '10px' }}>2. Refund Processing</h4>
-      <p style={{ marginBottom: '15px' }}>
-        Once your return is physically received and internally inspected, an immediate email protocol will fire notifying you of the approval status. Approved refunds will cleanly propagate to your original designated Razorpay gateway endpoint within 5-7 business working days naturally.
-      </p>
+      <ul>
+        <li>Item must be unused and in its original condition.</li>
+        <li>Original packaging and accessories must be included.</li>
+        <li>Proof of purchase or order confirmation is required.</li>
+        <li>Products damaged due to misuse are not eligible.</li>
+      </ul>
 
-      <h4 style={{ color: '#f97316', marginTop: '25px', marginBottom: '10px' }}>3. Exempted Output Goods</h4>
-      <p style={{ marginBottom: '15px' }}>
-        Certain explicit categories such as perishable items, custom software, digital media, or physically tampered items are heavily restricted and do not qualify for any standard refund sequence.
-      </p>
+      <h4 style={{ color: "#f97316", marginTop: "25px" }}>
+        2. Refund Process
+      </h4>
 
-      <h4 style={{ color: '#f97316', marginTop: '25px', marginBottom: '10px' }}>4. Shipping Transit Costs</h4>
       <p>
-        You will actively remain strictly responsible for covering your own outbound logistical shipping rates associated with returning the item. Restocking fees may conditionally apply.
+        Once we receive and inspect the returned item, you will receive an
+        email regarding the approval or rejection of your refund. Approved
+        refunds are processed to the original payment method within
+        <strong> 5–7 business days</strong>.
+      </p>
+
+      <h4 style={{ color: "#f97316", marginTop: "25px" }}>
+        3. Non-Returnable Items
+      </h4>
+
+      <ul>
+        <li>Digital products and downloadable software.</li>
+        <li>Gift cards.</li>
+        <li>Perishable goods.</li>
+        <li>Customized or personalized products.</li>
+        <li>Items damaged after delivery due to customer negligence.</li>
+      </ul>
+
+      <h4 style={{ color: "#f97316", marginTop: "25px" }}>
+        4. Shipping Charges
+      </h4>
+
+      <p>
+        Customers are responsible for return shipping costs unless the product
+        was received damaged or an incorrect item was delivered by NEXCART.
+      </p>
+
+      <h4 style={{ color: "#f97316", marginTop: "25px" }}>
+        5. Need Help?
+      </h4>
+
+      <p>
+        For any return or refund queries, contact our support team at:
+      </p>
+
+      <p
+        style={{
+          color: "#f97316",
+          fontWeight: "bold",
+          fontSize: "18px",
+        }}
+      >
+        📧 support@nexcart.com
       </p>
     </div>
   );

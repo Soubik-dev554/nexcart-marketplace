@@ -100,16 +100,97 @@ const getSellerOrders = async (req, res) => {
 
 const updateOrderStatus = async (req, res) => {
   try {
-    const order = await Order.findById(req.params.id);
-    if (order) {
-      order.status = req.body.status || order.status;
-      const updatedOrder = await order.save();
-      res.json(updatedOrder);
-    } else {
-      res.status(404).json({ message: 'Order not found' });
+    const order = await Order.findById(req.params.id).populate(
+      "userId",
+      "name email"
+    );
+
+    if (!order) {
+      return res.status(404).json({
+        message: "Order not found",
+      });
     }
+
+    order.status = req.body.status || order.status;
+
+    const updatedOrder = await order.save();
+
+    // ---------------- SHIPPED EMAIL ----------------
+    if (updatedOrder.status === "Shipped") {
+      const message = `
+        <h2>🚚 Your Order Has Been Shipped</h2>
+
+        <p>Hello <strong>${order.userId.name}</strong>,</p>
+
+        <p>Your order is now on the way.</p>
+
+        <p>
+          <strong>Order ID:</strong> ${order._id}
+        </p>
+
+        <p>
+          <strong>Total Amount:</strong> ₹${order.totalAmount.toFixed(2)}
+        </p>
+
+        <p>
+          You can check your order status anytime from your NEXCART account.
+        </p>
+
+        <p>Thank you for shopping with NEXCART ❤️</p>
+      `;
+
+      await sendEmail({
+        email: order.userId.email,
+        subject: "NEXCART - Your Order Has Been Shipped 🚚",
+        message,
+      });
+    }
+
+    // ---------------- DELIVERED EMAIL ----------------
+    if (updatedOrder.status === "Delivered") {
+      const message = `
+        <h2>📦 Order Delivered Successfully</h2>
+
+        <p>Hello <strong>${order.userId.name}</strong>,</p>
+
+        <p>
+          Great news! Your order has been successfully delivered.
+        </p>
+
+        <p>
+          <strong>Order ID:</strong> ${order._id}
+        </p>
+
+        <p>
+          <strong>Total Amount:</strong> ₹${order.totalAmount.toFixed(2)}
+        </p>
+
+        <p>
+          We hope you enjoy your purchase.
+        </p>
+
+        <p>
+          Thank you for choosing <strong>NEXCART</strong>.
+        </p>
+
+        <h3>⭐⭐⭐⭐⭐</h3>
+
+        <p>We look forward to serving you again.</p>
+      `;
+
+      await sendEmail({
+        email: order.userId.email,
+        subject: "NEXCART - Order Delivered 📦",
+        message,
+      });
+    }
+
+    res.json(updatedOrder);
+
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({
+      message: error.message,
+    });
   }
 };
 

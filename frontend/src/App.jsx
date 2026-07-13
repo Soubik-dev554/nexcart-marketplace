@@ -45,7 +45,7 @@ function App() {
           <Route path="/ordersuccess" element={<OrderSuccess />} />
           <Route path="/about" element={<About />} />
           <Route path="/disclaimer" element={<Disclaimer />} />
-          <Route path="/return" element={<ReturnPolicy />} />
+          <Route path="/return-policy" element={<ReturnPolicy />} />
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/super-admin" element={<SuperAdminDashboard />} />
           <Route path="/super-admin/edit-seller/:id" element={<EditSeller />} />
