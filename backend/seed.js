@@ -227,9 +227,10 @@ const groceryWorld = users.find((user) => user.email === "grocery@nexcart.com");
   }
 ];
 
-    await Product.insertMany(products);
+    const insertedProducts = await Product.insertMany(products);
 
-    console.log('✅ Data Imported Successfully!');
+console.log("Inserted products:", insertedProducts.length);
+console.log("✅ Data Imported Successfully!");
     process.exit();
   } catch (error) {
     console.error(`❌ Error with data import: ${error.message}`);
